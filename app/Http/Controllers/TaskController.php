@@ -46,12 +46,10 @@ class TaskController extends Controller
             ->with('success', 'タスクを作成しました。');
     }
 
-    /**
-     * タスク詳細を表示
-     */
+
     public function show(Task $task)
     {
-        // 他のユーザーのタスクにはアクセスできない
+
         if ($task->user_id !== auth()->id()) {
             abort(403);
         }
@@ -61,12 +59,10 @@ class TaskController extends Controller
         return view('tasks.show', compact('task'));
     }
 
-    /**
-     * タスク編集フォームを表示
-     */
+
     public function edit(Task $task)
     {
-        // 他のユーザーのタスクにはアクセスできない
+
         if ($task->user_id !== auth()->id()) {
             abort(403);
         }
@@ -76,12 +72,10 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task', 'categories'));
     }
 
-    /**
-     * タスクを更新
-     */
+
     public function update(TaskRequest $request, Task $task)
     {
-        // 他のユーザーのタスクにはアクセスできない
+
         if ($task->user_id !== auth()->id()) {
             abort(403);
         }
@@ -92,12 +86,10 @@ class TaskController extends Controller
             ->with('success', 'タスクを更新しました。');
     }
 
-    /**
-     * タスクを削除
-     */
+
     public function destroy(Task $task)
     {
-        // 他のユーザーのタスクにはアクセスできない
+
         if ($task->user_id !== auth()->id()) {
             abort(403);
         }
